@@ -1,0 +1,80 @@
+     <div class="generic-container" ng-controller="CustomerController as ctrl" id="full-size">
+          <div class="panel panel-default">
+              <div class="panel-heading"><span class="lead">Customer Registration Form </span></div>
+              <div class="formcontainer">
+                  <form ng-submit="ctrl.submit()" name="myForm" class="form-horizontal">
+                      <input type="hidden" ng-model="ctrl.customer.id" />
+                      
+                      <div class="form-group">
+                          
+                              <label class="col-sm-2 control-label" for="uname">Name</label>
+                              <div class="col-sm-7">
+                     <input type="text" pattern="[a-zA-Z]*" ng-model="ctrl.customer.name" id="name" class="form-control " placeholder="Enter your Name" required/>
+                              
+                            
+                          </div>
+                      </div>
+                             
+                      <div class="form-group">
+                         
+                              <label class="col-sm-2 control-label" for="name">Surname</label>
+                              <div class="col-sm-7">
+                                  <input type="text" pattern="[a-zA-Z]*" ng-model="ctrl.customer.surname" id="name" class="form-control" placeholder="Enter your Surname" required/>
+                            
+                          </div>
+                      </div>
+ 
+                      <div class="form-group">
+                          
+                              <label class="col-sm-2 control-label" for="surname">Email</label>
+                              <div class="col-sm-7">
+                                  <input type="email" ng-model="ctrl.customer.email" id="surname" class=" form-control " placeholder="Enter your Email" required/>
+                                 
+                              
+                          </div>
+                      </div>
+ 
+                     <div class="row">
+                      <div class="form-actions">
+                       <div class="col-sm-4 col-sm-offset-4 pull-right">
+                        <input type="submit" class="btn btn-primary btn-sm" value=" {{!ctrl.customer.id ? 'Add' : 'Update'}}" ng-disabled="myForm.$invalid">
+                        <button type="button" class="btn btn-warning btn-sm" ng-click="ctrl.reset()" ng-disabled="myForm.$pristine">Reset Form</button>
+                      </div>
+                     </div>
+                   </div>
+                  </form>
+              </div>
+          </div>
+          <div class="panel panel-default">
+                <!-- Default panel contents -->
+              <div class="panel-heading"><span class="lead">List of Customers </span></div>
+              <div class="tablecontainer">
+                  <table class="table table-hover">
+                      <thead>
+                          <tr>
+                              <th>ID.</th>
+                              <th>Name</th>
+                              <th>Surname</th>
+                              <th>Email</th>
+                              <th width="20%"></th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          <tr ng-repeat="u in ctrl.customers">
+                              <td><span ng-bind="u.id"></span></td>
+                              <td><span ng-bind="u.name"></span></td>
+                              <td><span ng-bind="u.surname"></span></td>
+                              <td><span ng-bind="u.email"></span></td>
+                              <td>
+                              <button type="button" ng-click="ctrl.edit(u.id)" class="btn btn-success custom-width">Edit</button>
+                              </td>
+                              <td>
+                              <button type="button"  ng-click="ctrl.remove(u.id)" class="btn btn-danger custom-width">Remove</button>
+                              </td>
+                          </tr>
+                      </tbody>
+                  </table>
+              </div>
+          </div>
+      </div>
+ 

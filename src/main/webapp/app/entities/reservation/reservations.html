@@ -1,0 +1,113 @@
+ <body ng-app=routerApp class="ng-cloak">
+      <div class="generic-container" ng-controller="ReservationController as ctrl" id="full-size">
+          <div class="panel panel-default">
+              <div class="panel-heading"><span class="lead">Reservation Registration FormTOMBALA </span></div>
+              <div class="formcontainer">
+                  <form ng-submit="ctrl.submit()" name="myForm" class="form-horizontal">
+                      <input type="hidden" ng-model="ctrl.reservation.id" />
+
+         <div class="form-group">
+
+                              <label class="col-sm-2 control-label"  for="uname">UserName</label>
+                          <div class="col-sm-7">
+
+         <select ng-model="ctrl.reservation.userid" class="form-control" ng-required="true" width="50px">
+            <option ng-repeat="x in ctrl.numbers" value="{{x.userId}}"> {{x.name}} </option>
+        </select>
+                </div>
+        </div>
+
+
+                      <div class="form-group">
+
+                              <label class="col-sm-2 control-label" for="name">BookName</label>
+                              <div class="col-sm-7">
+
+
+                       <select ng-model="ctrl.reservation.bookid"
+                        class="form-control" ng-required="true">
+            <option ng-repeat="x in ctrl.numbersBook"  value="{{x.bookId}}"> {{x.name}}</option>
+        </select>
+                           </div>
+
+                          </div>
+
+
+
+
+                      <div class="form-group">
+
+                              <label class="col-sm-2 control-label" for="surname">StartDate</label>
+                              <div class="col-sm-7">
+                                  <input type="date" ng-model="ctrl.reservation.startDate"  id="StartDate" ng-change='ctrl.checkError2(ctrl.reservation.bookid,ctrl.reservation.startDate)'
+                                  class=" form-control" placeholder="Enter your start date" required/>
+
+
+                          </div>
+                      </div>
+
+                       <span>{{ctrl.errMessage2}}</span>
+
+                      <div class="form-group">
+
+                              <label class="col-sm-2 control-label" for="surname">FinalDate</label>
+                              <div class="col-sm-7">
+                                  <input type="date" ng-model="ctrl.reservation.finalDate" id="finalDate" class=" form-control"  ng-change='ctrl.checkError(ctrl.reservation.startDate,ctrl.reservation.finalDate)' placeholder="Enter your final date" required/>
+
+
+                          </div>
+                      </div>
+
+                      <span>{{ctrl.errMessage}}</span>
+
+
+                     <div class="row">
+                      <div class="form-actions">
+                       <div class="col-sm-4 col-sm-offset-4 pull-right">
+                        <input type="submit" class="btn btn-primary btn-sm" value=" {{!ctrl.reservation.id ? 'Add' : 'Update'}}" ng-disabled="myForm.$invalid">
+                        <button type="button" class="btn btn-warning btn-sm" ng-click="ctrl.reset()" ng-disabled="myForm.$pristine">Reset Form</button>
+                      </div>
+                     </div>
+                   </div>
+                  </form>
+
+              </div>
+          </div>
+          <div class="panel panel-default">
+                <!-- Default panel contents -->
+              <div class="panel-heading"><span class="lead">List of Reservations </span></div>
+              <div class="tablecontainer">
+                  <table class="table table-hover">
+                      <thead>
+                          <tr>
+                              <th>ID.</th>
+                              <th>UserId</th>
+                              <th>BookId</th>
+                              <th>StartDate</th>
+                              <th>FinalDate</th>
+                              <th width="20%"></th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          <tr ng-repeat="u in ctrl.reservations">
+                              <td><span ng-bind="u.id"></span></td>
+                              <td><span ng-bind="u.customerId"></span></td>
+                              <td><span ng-bind="u.bookId"></span></td>
+                              <td><span ng-bind="u.startDate"></span></td>
+                              <td><span ng-bind="u.finalDate"></span></td>
+                              <td>
+                              <button type="button" ng-click="ctrl.edit(u.reservationId)" class="btn btn-success custom-width">Edit</button>
+                              </td>
+                              <td>
+                              <button type="button"  ng-click="ctrl.remove(u.reservationId)" class="btn btn-danger custom-width">Remove</button>
+                              </td>
+                          </tr>
+                      </tbody>
+                  </table>
+              </div>
+          </div>
+      </div>
+       <script src="static/js/angular.js"></script>
+      <script src="static/js/app.js"></script>
+
+  </body>
