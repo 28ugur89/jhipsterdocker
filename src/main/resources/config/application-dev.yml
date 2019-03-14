@@ -21,7 +21,7 @@ spring:
         restart:
             enabled: true
         livereload:
-            enabled: false # we use gulp + BrowserSync for livereload
+            enabled: false # we use gulp + BrowserSync for livereload hop
     jackson:
         serialization.indent_output: true
     datasource:
